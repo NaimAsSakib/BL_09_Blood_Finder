@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "827557217420",
+    "firebase_url": "https://bl-09-blood-finder-default-rtdb.firebaseio.com",
+    "project_id": "bl-09-blood-finder",
+    "storage_bucket": "bl-09-blood-finder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827557217420:android:f825a8f78b88a98fc627a9",
+        "android_client_info": {
+          "package_name": "com.example.bl09bloodfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827557217420-f0o6pc64d660op9ebafltdmd7hksdnab.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8gJxXq0-wHSYk4jfAIw-fmDySsXcDrdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827557217420-f0o6pc64d660op9ebafltdmd7hksdnab.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

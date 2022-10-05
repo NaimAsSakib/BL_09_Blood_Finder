@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#2e869a"
+        android:paddingStart="20dp"
+        android:paddingEnd="19dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvDonorContactList1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/constraintLayout1"
+            app:layout_constraintTop_toTopOf="@id/constraintLayout1"
+            android:text="BLOOD Finder" />
+
+        <ImageView
+            android:id="@+id/ivDonorContactList1"
+            android:layout_width="25dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="125dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/filter"
+            app:layout_constraintBottom_toBottomOf="@id/tvDonorContactList2"
+            app:layout_constraintEnd_toStartOf="@id/tvDonorContactList2"
+            app:layout_constraintTop_toTopOf="@id/tvDonorContactList2" />
+
+        <TextView
+            android:id="@+id/tvDonorContactList2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@id/tvDonorContactList1"
+            app:layout_constraintEnd_toEndOf="@id/constraintLayout1"
+            app:layout_constraintTop_toTopOf="@id/tvDonorContactList1"
+            android:text="Filters" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/bloodgroup_horizontal_view_shape"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/constraintLayout1"
+        app:layout_constraintStart_toStartOf="@id/constraintLayout1"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/horizontalRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout2"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="21dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/verticalRecyclerView_ContactList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="156dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/custom_rcv_bloodgroup_contactlist" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
