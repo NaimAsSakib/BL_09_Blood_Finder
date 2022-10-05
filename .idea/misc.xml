@@ -4,8 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/drawable-v24/bloodgroup_horizontal_view_shape.xml" value="0.1395" />
+        <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.14" />
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/activity_donor_details.xml" value="0.2" />
-        <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/activity_filter.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/activity_filter.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/activity_first.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/custom_horizontal_rcv_blood_group.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/custom_rcv_bloodgroup_contactlist.xml" value="0.2421875" />
