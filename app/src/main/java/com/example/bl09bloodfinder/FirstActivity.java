@@ -157,6 +157,7 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
             }
         };
 
+        //For dynamically querying students name with selected blood group by user
         Query query= FirebaseDatabase.getInstance().getReference("students")
                 .orderByChild("bloodGroup")
                 .equalTo(bloodName);
