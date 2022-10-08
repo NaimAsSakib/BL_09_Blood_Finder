@@ -10,6 +10,9 @@
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/activity_first.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/custom_horizontal_rcv_blood_group.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/custom_rcv_bloodgroup_contactlist.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/fragment_frag_filter_blood.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/fragment_frag_filter_location.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BL09BloodFinder/app/src/main/res/layout/fragment_frag_filter_name.xml" value="0.2421875" />
       </map>
     </option>
   </component>

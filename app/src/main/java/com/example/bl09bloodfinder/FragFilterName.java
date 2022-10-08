@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class FagFilterName extends Fragment {
+public class FragFilterName extends Fragment {
 
 
 
-    public FagFilterName() {
+    public FragFilterName() {
         // Required empty public constructor
     }
 
@@ -22,6 +22,8 @@ public class FagFilterName extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fag_filter_name, container, false);
+        View view= inflater.inflate(R.layout.fragment_frag_filter_name, container, false);
+        return  view;
+
     }
 }
