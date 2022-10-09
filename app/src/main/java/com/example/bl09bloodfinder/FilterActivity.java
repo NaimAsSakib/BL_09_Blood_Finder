@@ -24,7 +24,7 @@ public class FilterActivity extends AppCompatActivity {
     Button searchButton;
 
 
-    String searchByName;
+    String inputName, inputBloodGroup, inputCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +62,19 @@ public class FilterActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent=getIntent();
-        searchByName=intent.getStringExtra("inputName");
-        selectedText.setText(searchByName);
+            Intent intent=getIntent();
+        inputName=intent.getStringExtra("inputName");
+        inputBloodGroup=intent.getStringExtra("selectedBlood");
+
+            if(inputName!=null){
+                selectedText.setText(inputName);
+            }
+            else if(inputBloodGroup!=null){
+                selectedText.setText(inputBloodGroup);
+
+            }
+
+
 
 
 
@@ -74,6 +84,5 @@ public class FilterActivity extends AppCompatActivity {
     private void openFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).addToBackStack(null).commit();
     }
-
 
 }
