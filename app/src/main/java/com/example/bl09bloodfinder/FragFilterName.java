@@ -19,12 +19,11 @@ public class FragFilterName extends Fragment {
     Button button;
 
     String name;
-    private ItemOnClickListener listener;
 
 
-    public FragFilterName(ItemOnClickListener listener) {
+    public FragFilterName() {
         // Required empty public constructor
-        this.listener=  listener;
+
     }
 
 
@@ -46,8 +45,8 @@ public class FragFilterName extends Fragment {
                 if (name.isEmpty()){
                     Toast.makeText(getActivity(),"Please enter a name",Toast.LENGTH_LONG).show();
                 }else {
-                    listener.onItemClicked(name,"FragName");
                     Intent intent = new Intent(getActivity(), FilterActivity.class);
+                    intent.putExtra("inputName", name);
                     startActivity(intent);
                 }
             }

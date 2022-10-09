@@ -7,20 +7,22 @@ import androidx.fragment.app.Fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.Query;
 
-public class FilterActivity extends AppCompatActivity implements ItemOnClickListener{
+public class FilterActivity extends AppCompatActivity {
 
-    CardView cardViewName, cardViewBlood, cardViewLocation;
+    CardView cardViewName, cardViewBlood, cardViewLocation, cardViewBottom;
 
+    TextView selectedText;
     Button searchButton;
 
-    ItemOnClickListener itemOnClickListener;
 
     String searchByName;
 
@@ -33,6 +35,7 @@ public class FilterActivity extends AppCompatActivity implements ItemOnClickList
         cardViewBlood = findViewById(R.id.cardView2);
         cardViewLocation = findViewById(R.id.cardView3);
 
+        selectedText=findViewById(R.id.tvBloodGroupNameFilter);
         searchButton=findViewById(R.id.btnFilterApply);
 
 
@@ -40,7 +43,8 @@ public class FilterActivity extends AppCompatActivity implements ItemOnClickList
         cardViewName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFragment(new FragFilterName(FilterActivity.this));
+               // openFragment(new FragFilterName());  without listener
+                openFragment(new FragFilterName());
             }
         });
 
@@ -58,6 +62,11 @@ public class FilterActivity extends AppCompatActivity implements ItemOnClickList
             }
         });
 
+        Intent intent=getIntent();
+        searchByName=intent.getStringExtra("inputName");
+        selectedText.setText(searchByName);
+
+
 
     }
 
@@ -67,10 +76,4 @@ public class FilterActivity extends AppCompatActivity implements ItemOnClickList
     }
 
 
-    @Override
-    public void onItemClicked(String value, String name) {
-        searchByName=value;
-        Log.e("Name is ",searchByName);
-
-    }
 }
