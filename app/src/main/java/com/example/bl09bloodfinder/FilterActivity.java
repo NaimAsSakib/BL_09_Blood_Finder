@@ -71,13 +71,8 @@ public class FilterActivity extends AppCompatActivity {
             }
             else if(inputBloodGroup!=null){
                 selectedText.setText(inputBloodGroup);
-
             }
-
-
-
-
-
+            
     }
 
     //method for opening fragments
