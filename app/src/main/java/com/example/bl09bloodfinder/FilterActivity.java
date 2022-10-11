@@ -20,11 +20,11 @@ public class FilterActivity extends AppCompatActivity {
 
     CardView cardViewName, cardViewBlood, cardViewLocation, cardViewBottom;
 
-    TextView selectedText;
+    TextView selectedText, tvToGoBack;
     Button searchButton;
 
 
-    String inputName, inputBloodGroup, inputCity;
+    String inputName, inputBloodGroup, inputLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class FilterActivity extends AppCompatActivity {
         cardViewLocation = findViewById(R.id.cardView3);
 
         selectedText=findViewById(R.id.tvBloodGroupNameFilter);
+        tvToGoBack=findViewById(R.id.tvToGoBack);
+
         searchButton=findViewById(R.id.btnFilterApply);
 
 
@@ -65,6 +67,7 @@ public class FilterActivity extends AppCompatActivity {
             Intent intent=getIntent();
         inputName=intent.getStringExtra("inputName");
         inputBloodGroup=intent.getStringExtra("selectedBlood");
+        inputLocation=intent.getStringExtra("locationName");
 
             if(inputName!=null){
                 selectedText.setText(inputName);
@@ -72,7 +75,26 @@ public class FilterActivity extends AppCompatActivity {
             else if(inputBloodGroup!=null){
                 selectedText.setText(inputBloodGroup);
             }
-            
+            else if(inputLocation!=null){
+                selectedText.setText(inputLocation);
+            }
+
+            //setting button visibility rule
+            if (selectedText.getText().toString().isEmpty()){
+                searchButton.setVisibility(View.GONE);
+            }else{
+                searchButton.setVisibility(View.VISIBLE);
+
+            }
+
+            tvToGoBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(FilterActivity.this,FirstActivity.class);
+                    startActivity(intent);
+                }
+            });
+
     }
 
     //method for opening fragments
