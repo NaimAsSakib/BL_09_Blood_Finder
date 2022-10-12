@@ -46,7 +46,7 @@ public class FragFilterLocation extends Fragment {
         radBtnSiraj = view.findViewById(R.id.radBtnSiraj);
 
 
-        //checking radiobutton id & seeting that value on edittext
+        //checking radiobutton id & setting that value on edittext
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

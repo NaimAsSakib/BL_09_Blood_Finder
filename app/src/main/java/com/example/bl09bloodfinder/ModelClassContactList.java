@@ -2,7 +2,7 @@ package com.example.bl09bloodfinder;
 
 
 public class ModelClassContactList {
-    String bloodGroup, name, occupation, email, currentLocation, mobile, organizationName;
+    String bloodGroup, name;
 
     //empty constructor without argument is for firebase
     ModelClassContactList(){

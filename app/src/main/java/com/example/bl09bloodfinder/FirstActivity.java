@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FirstActivity extends AppCompatActivity implements ItemOnClickListener{
+public class FirstActivity extends AppCompatActivity implements ItemOnClickListener {
     //Recyclerview code
     RecyclerView recyclerViewBloodGroup, recyclerViewContactList;
     RecyclerView.Adapter programAdapterBloodGroup, programAdapterContactList;
@@ -38,7 +38,7 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
     ImageView imageFilter;
     TextView tvFilter;
 
-    private String bloodName="A+"; //for initially showing api data in RCV for A+
+    private String bloodName = "A+"; //for initially showing api data in RCV for A+
 
 
     @Override
@@ -50,14 +50,13 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
         tvFilter = findViewById(R.id.tvDonorContactList1);
 
 
-
         recyclerViewBloodGroup = findViewById(R.id.horizontalRecyclerView);
         recyclerViewBloodGroup.setHasFixedSize(true);
         layoutManagerBloodGroup = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewBloodGroup.setLayoutManager(layoutManagerBloodGroup);
 
 
-       // programAdapterBloodGroup = new BloodGroupRCVAdapter(this, bloodGroupName);  //without listener
+        // programAdapterBloodGroup = new BloodGroupRCVAdapter(this, bloodGroupName);  //without listener
         programAdapterBloodGroup = new BloodGroupRCVAdapter(this, bloodGroupName, this);
         recyclerViewBloodGroup.setAdapter(programAdapterBloodGroup);
 
@@ -81,10 +80,9 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
         recyclerViewContactList.setAdapter(programAdapterContactList);
 
         //Firebase code. path is the name of database
-        databaseReference= FirebaseDatabase.getInstance().getReference("students");
-
         //we can use it directly but didn't use because we have query of blood group
-        /*databaseReference.addValueEventListener(new ValueEventListener() {
+       /* databaseReference= FirebaseDatabase.getInstance().getReference("students");
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -101,23 +99,8 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
             }
         });*/
 
-        ValueEventListener valueEventListener=new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ModelClassContactList contactList = dataSnapshot.getValue(ModelClassContactList.class);
-                    modelClassContactListArrayList.add(contactList);
-                }
-                programAdapterContactList.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-
-        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+        //calling firebase method to access firebase realtime database
+        callFirebaseDatabase();
 
 
         imageFilter.setOnClickListener(new View.OnClickListener() {
@@ -130,21 +113,37 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
 
     }
 
-    @Override
-    public void onItemClicked(String value, String name) {
+    //method to connect with firebase database
+    private void callFirebaseDatabase() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("students");
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    ModelClassContactList contactList = dataSnapshot.getValue(ModelClassContactList.class);
+                    modelClassContactListArrayList.add(contactList);
+                }
+                programAdapterContactList.notifyDataSetChanged();
+            }
 
-        bloodName=value;
-        Log.e("passed value","BGName "+bloodName);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        };
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+
+    }
+
+    private void firebaseDataQuery() {
         //Firebase code. path is the name of database
-        databaseReference= FirebaseDatabase.getInstance().getReference("students");
-        ValueEventListener valueEventListener=new ValueEventListener() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("students");
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                modelClassContactListArrayList.clear();  //clearing data after every selection of blood group by user
 
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ModelClassContactList contactList = dataSnapshot.getValue(ModelClassContactList.class);
                     modelClassContactListArrayList.add(contactList);
                 }
@@ -157,11 +156,24 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
             }
         };
 
-        //For dynamically querying students name with selected blood group by user
-        Query query= FirebaseDatabase.getInstance().getReference("students")
+        //Code for querying by blood group
+        // For dynamically querying students name with selected blood group by user
+        Query query = FirebaseDatabase.getInstance().getReference("students")
                 .orderByChild("bloodGroup")
                 .equalTo(bloodName);
         query.addListenerForSingleValueEvent(valueEventListener);
+
+    }
+
+    @Override
+    public void onItemClicked(String value, String name) {
+
+        bloodName = value;
+        Log.e("passed value", "BGName " + bloodName);
+
+        modelClassContactListArrayList.clear();  //clearing data after every selection of blood group by user
+
+        firebaseDataQuery(); //calling firebase database query method to dynamically changing data with clicked blood group
 
     }
 }

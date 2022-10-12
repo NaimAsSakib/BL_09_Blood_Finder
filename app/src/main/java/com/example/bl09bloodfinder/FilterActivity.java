@@ -64,6 +64,7 @@ public class FilterActivity extends AppCompatActivity {
             }
         });
 
+        //Decoding passed values from fragments
             Intent intent=getIntent();
         inputName=intent.getStringExtra("inputName");
         inputBloodGroup=intent.getStringExtra("selectedBlood");
@@ -87,11 +88,22 @@ public class FilterActivity extends AppCompatActivity {
 
             }
 
+            //going to back activity functionality
             tvToGoBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(FilterActivity.this,FirstActivity.class);
                     startActivity(intent);
+                }
+            });
+
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    Intent intentNextAct=new Intent(FilterActivity.this,AfterFilterActivity.class);
+                    startActivity(intentNextAct);
                 }
             });
 
