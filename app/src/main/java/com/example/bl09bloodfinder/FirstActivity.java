@@ -38,7 +38,7 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
     ImageView imageFilter;
     TextView tvFilter;
 
-    private String bloodName = "A+"; //for initially showing api data in RCV for A+
+    private String bloodName;
 
 
     @Override
@@ -100,7 +100,7 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
         });*/
 
         //calling firebase method to access firebase realtime database
-        callFirebaseDatabase();
+        fetchFirebaseDatabase();
 
 
         imageFilter.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +114,8 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
     }
 
     //method to connect with firebase database
-    private void callFirebaseDatabase() {
+    private void fetchFirebaseDatabase() {
+        //firebase code. path is the name of database
         databaseReference = FirebaseDatabase.getInstance().getReference("students");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -132,11 +133,11 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
             }
         };
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
-
     }
 
+
     private void firebaseDataQuery() {
-        //Firebase code. path is the name of database
+        //firebase code. path is the name of database
         databaseReference = FirebaseDatabase.getInstance().getReference("students");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -155,15 +156,14 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
 
             }
         };
-
         //Code for querying by blood group
         // For dynamically querying students name with selected blood group by user
         Query query = FirebaseDatabase.getInstance().getReference("students")
                 .orderByChild("bloodGroup")
                 .equalTo(bloodName);
         query.addListenerForSingleValueEvent(valueEventListener);
-
     }
+
 
     @Override
     public void onItemClicked(String value, String name) {
