@@ -72,7 +72,7 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
         modelClassContactListArrayList.add(new ModelClassContactList("O+", "Anika Iffat"));
 */
         recyclerViewContactList = findViewById(R.id.verticalRecyclerView_ContactList);
-        recyclerViewBloodGroup.setHasFixedSize(true);
+        recyclerViewContactList.setHasFixedSize(true);
         layoutManagerContactList = new LinearLayoutManager(this);
 
         recyclerViewContactList.setLayoutManager(layoutManagerContactList);
@@ -169,11 +169,11 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
     public void onItemClicked(String value, String name) {
 
         bloodName = value;
-        Log.e("passed value", "BGName " + bloodName);
+        //Log.e("passed value", "BGName " + bloodName);
 
         modelClassContactListArrayList.clear();  //clearing data after every selection of blood group by user
 
-        firebaseDataQuery(); //calling firebase database query method to dynamically changing data with clicked blood group
+        firebaseDataQuery(); //calling firebase database query method to dynamically change data with clicked blood group
 
     }
 }

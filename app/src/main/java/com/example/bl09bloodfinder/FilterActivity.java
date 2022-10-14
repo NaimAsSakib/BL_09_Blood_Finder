@@ -20,7 +20,7 @@ public class FilterActivity extends AppCompatActivity {
 
     CardView cardViewName, cardViewBlood, cardViewLocation, cardViewBottom;
 
-    TextView selectedText, tvToGoBack;
+    TextView tvSelectedText, tvToGoBack;
     Button searchButton;
 
 
@@ -35,7 +35,7 @@ public class FilterActivity extends AppCompatActivity {
         cardViewBlood = findViewById(R.id.cardView2);
         cardViewLocation = findViewById(R.id.cardView3);
 
-        selectedText=findViewById(R.id.tvBloodGroupNameFilter);
+        tvSelectedText=findViewById(R.id.tvBloodGroupNameFilter);
         tvToGoBack=findViewById(R.id.tvToGoBack);
 
         searchButton=findViewById(R.id.btnFilterApply);
@@ -71,20 +71,32 @@ public class FilterActivity extends AppCompatActivity {
         inputLocation=intent.getStringExtra("locationName");
 
             if(inputName!=null){
-                selectedText.setText(inputName);
+                tvSelectedText.setText(inputName);
             }
             else if(inputBloodGroup!=null){
-                selectedText.setText(inputBloodGroup);
+                tvSelectedText.setText(inputBloodGroup);
             }
             else if(inputLocation!=null){
-                selectedText.setText(inputLocation);
+                tvSelectedText.setText(inputLocation);
             }
 
             //setting button visibility rule
-            if (selectedText.getText().toString().isEmpty()){
+            if (tvSelectedText.getText().toString().isEmpty()){
                 searchButton.setVisibility(View.GONE);
             }else{
                 searchButton.setVisibility(View.VISIBLE);
+
+                searchButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        String selectedValue=tvSelectedText.getText().toString();
+
+                        Intent intentNextAct=new Intent(FilterActivity.this,AfterFilterActivity.class);
+                        intentNextAct.putExtra("filterValue",selectedValue);
+                        startActivity(intentNextAct);
+                    }
+                });
 
             }
 
@@ -97,15 +109,6 @@ public class FilterActivity extends AppCompatActivity {
                 }
             });
 
-            searchButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                    Intent intentNextAct=new Intent(FilterActivity.this,AfterFilterActivity.class);
-                    startActivity(intentNextAct);
-                }
-            });
 
     }
 

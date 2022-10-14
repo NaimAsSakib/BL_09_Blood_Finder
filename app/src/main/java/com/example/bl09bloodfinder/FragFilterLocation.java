@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 
 public class FragFilterLocation extends Fragment {
     EditText etInputLocation;
@@ -71,7 +73,7 @@ public class FragFilterLocation extends Fragment {
         btnLocationSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passLocation = etInputLocation.getText().toString().trim();
+                passLocation = etInputLocation.getText().toString().trim().toUpperCase(Locale.ROOT);
                 if (passLocation.isEmpty()) {
                     Toast.makeText(getActivity(), "Please enter a name", Toast.LENGTH_LONG).show();
                 } else {
