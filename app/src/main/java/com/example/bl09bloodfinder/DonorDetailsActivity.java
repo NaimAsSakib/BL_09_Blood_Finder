@@ -23,7 +23,6 @@ public class DonorDetailsActivity extends AppCompatActivity {
     ImageView ivBack, call;
     private String fullName, blood;
 
-    ModelClassDonorDetails modelClassDonorDetails;
     DatabaseReference databaseReference;  //Firebase
 
 
@@ -54,6 +53,7 @@ public class DonorDetailsActivity extends AppCompatActivity {
 
         //getting passed value from ContactListRCVAdapter
         Intent intent = getIntent();
+        //fullName & blood both are getting values from ContactListRCViewAdapter & AfterFilterRCVAdapter as their getStringExtra(value are same)
          fullName=intent.getStringExtra("Name");
          blood= intent.getStringExtra("Blood");
 
@@ -74,7 +74,9 @@ public class DonorDetailsActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ModelClassDonorDetails donorDetails = dataSnapshot.getValue(ModelClassDonorDetails.class);
 
+                    //condition for getting details of donor only whose name & blood both equal to firebase database
                     if(donorDetails.name.equals(fullName) && donorDetails.bloodGroup.equals(blood)){
+
                         if (!donorDetails.mobile.isEmpty()){
                             donorNumber.setText(donorDetails.mobile);
                         }else {
@@ -95,11 +97,8 @@ public class DonorDetailsActivity extends AppCompatActivity {
 
             }
         };
-        //databaseReference.addListenerForSingleValueEvent(valueEventListener);
-        Query query = FirebaseDatabase.getInstance().getReference("students")
-                .orderByChild("name")
-                .equalTo(fullName);
-        query.addListenerForSingleValueEvent(valueEventListener);
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+
 
 
     }

@@ -74,9 +74,11 @@ public class AfterFilterRCVAdapter extends RecyclerView.Adapter<AfterFilterRCVAd
 
 
                 Intent intent=new Intent(context,DonorDetailsActivity.class);
+                //key name of donorBlood & donorName are same as ContactListRCViewAdapter because values are needed from both adapters
+                //to DonorDetailsActivity
                 intent.putExtra("Blood",donorBlood);
                 intent.putExtra("Name",donorName);
-                intent.putExtra("Location",donorLocation);
+                intent.putExtra("LocationDonorDetailsAdapter",donorLocation);
                 context.startActivity(intent);
             }
         });
