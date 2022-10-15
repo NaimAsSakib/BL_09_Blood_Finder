@@ -55,34 +55,39 @@ public class AfterFilterActivity extends AppCompatActivity {
 
         //firebase code
         modelClassAfterFilterActArrayList.clear();  //clearing data after every selection of blood group by user
-        firebaseDataQuery();
+
+        //if i use firebaseDataQueryLessDynamic() method, all functionality works but name search in filter becomes static. User has to
+        //input full name to find donor, partial name doesn't work.
+
+        //firebaseDataQueryLessDynamic();
+        firebaseDataQueryMoreDynamic();
 
     }
 
-    private void firebaseDataQuery() {
-
-
+    //more dynamic filter
+    private void firebaseDataQueryMoreDynamic() {
         //firebase code. path is the name of database
         databaseReference = FirebaseDatabase.getInstance().getReference("students");
+
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
                     ModelClassAfterFilterAct contactList = dataSnapshot.getValue(ModelClassAfterFilterAct.class);
+
                     if (contactList.name.contains(selectedValueFilter)) {
                         modelClassAfterFilterActArrayList.add(contactList);
+
                     } else if (contactList.bloodGroup.equals(selectedValueFilter)) {
                         modelClassAfterFilterActArrayList.add(contactList);
+
                     } else if (contactList.currentLocation.contains(selectedValueFilter)) {
                         modelClassAfterFilterActArrayList.add(contactList);
                     }
-                    //  modelClassContactListArrayList.add(contactList);
                     programAdapter.notifyDataSetChanged();
-
-
                 }
-                // programAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -91,9 +96,33 @@ public class AfterFilterActivity extends AppCompatActivity {
         };
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
 
+    }
+
+    //less dynamic filter
+    private void firebaseDataQueryLessDynamic() {
+        //firebase code. path is the name of database
+        databaseReference = FirebaseDatabase.getInstance().getReference("students");
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    ModelClassAfterFilterAct contactList = dataSnapshot.getValue(ModelClassAfterFilterAct.class);
+
+                    modelClassAfterFilterActArrayList.add(contactList);
+                }
+                 programAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        };
+
         //Code for querying by blood group
         // For dynamically querying students name with selected blood group by user
-       /* Query query1 = FirebaseDatabase.getInstance().getReference("students")
+        Query query1 = FirebaseDatabase.getInstance().getReference("students")
                 .orderByChild("bloodGroup")
                 .equalTo(selectedValueFilter);
         query1.addListenerForSingleValueEvent(valueEventListener);
@@ -104,10 +133,10 @@ public class AfterFilterActivity extends AppCompatActivity {
         query2.addListenerForSingleValueEvent(valueEventListener);
 
 
-        Query query4 = FirebaseDatabase.getInstance().getReference("students")
+        Query query3 = FirebaseDatabase.getInstance().getReference("students")
                 .orderByChild("currentLocation")
                 .equalTo(selectedValueFilter);
-        query4.addListenerForSingleValueEvent(valueEventListener);*/
+        query3.addListenerForSingleValueEvent(valueEventListener);
 
 
     }
