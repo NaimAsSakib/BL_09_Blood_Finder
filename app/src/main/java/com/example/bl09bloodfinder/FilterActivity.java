@@ -20,7 +20,7 @@ import com.google.firebase.database.Query;
 public class FilterActivity extends AppCompatActivity {
 
     CardView cardViewName, cardViewBlood, cardViewLocation;
-ImageView backButton;
+    ImageView backButton;
     TextView tvSelectedText;
     Button searchButton;
 
@@ -36,18 +36,17 @@ ImageView backButton;
         cardViewBlood = findViewById(R.id.cardView2);
         cardViewLocation = findViewById(R.id.cardView3);
 
-        backButton=findViewById(R.id.ivBackFilterAct);
+        backButton = findViewById(R.id.ivBackFilterAct);
 
-        tvSelectedText=findViewById(R.id.tvBloodGroupNameFilter);
+        tvSelectedText = findViewById(R.id.tvBloodGroupNameFilter);
 
-        searchButton=findViewById(R.id.btnFilterApply);
-
+        searchButton = findViewById(R.id.btnFilterApply);
 
 
         cardViewName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // openFragment(new FragFilterName());  without listener
+                // openFragment(new FragFilterName());  without listener
                 openFragment(new FragFilterName());
             }
         });
@@ -67,49 +66,47 @@ ImageView backButton;
         });
 
         //Decoding passed values from fragments
-            Intent intent=getIntent();
-        inputName=intent.getStringExtra("inputName");
-        inputBloodGroup=intent.getStringExtra("selectedBlood");
-        inputLocation=intent.getStringExtra("locationName");
+        Intent intent = getIntent();
+        inputName = intent.getStringExtra("inputName");
+        inputBloodGroup = intent.getStringExtra("selectedBlood");
+        inputLocation = intent.getStringExtra("locationName");
 
-            if(inputName!=null){
-                tvSelectedText.setText(inputName);
-            }
-            else if(inputBloodGroup!=null){
-                tvSelectedText.setText(inputBloodGroup);
-            }
-            else if(inputLocation!=null){
-                tvSelectedText.setText(inputLocation);
-            }
+        if (inputName != null) {
+            tvSelectedText.setText(inputName);
+        } else if (inputBloodGroup != null) {
+            tvSelectedText.setText(inputBloodGroup);
+        } else if (inputLocation != null) {
+            tvSelectedText.setText(inputLocation);
+        }
 
-            //setting button visibility rule
-            if (tvSelectedText.getText().toString().isEmpty()){
-                searchButton.setVisibility(View.GONE);
-            }else{
-                searchButton.setVisibility(View.VISIBLE);
+        //setting button visibility rule
+        if (tvSelectedText.getText().toString().isEmpty()) {
+            searchButton.setVisibility(View.GONE);
+        } else {
+            searchButton.setVisibility(View.VISIBLE);
 
-                searchButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        String selectedValue=tvSelectedText.getText().toString();
-
-                        Intent intentNextAct=new Intent(FilterActivity.this,AfterFilterActivity.class);
-                        intentNextAct.putExtra("filterValue",selectedValue);
-                        startActivity(intentNextAct);
-                    }
-                });
-
-            }
-
-            //going to back activity functionality
-            backButton.setOnClickListener(new View.OnClickListener() {
+            searchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(FilterActivity.this,FirstActivity.class);
-                    startActivity(intent);
+
+                    String selectedValue = tvSelectedText.getText().toString();
+
+                    Intent intentNextAct = new Intent(FilterActivity.this, AfterFilterActivity.class);
+                    intentNextAct.putExtra("filterValue", selectedValue);
+                    startActivity(intentNextAct);
                 }
             });
+
+        }
+
+        //going to back activity functionality
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FilterActivity.this, FirstActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

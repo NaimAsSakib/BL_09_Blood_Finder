@@ -85,6 +85,15 @@ public class ContactListRCViewAdapter extends RecyclerView.Adapter<ContactListRC
             }
         });
 
+        // For calling functionality
+        holder.call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(context, DonorDetailsActivity.class);
+                context.startActivity(intent1);
+            }
+        });
+
 
     }
 

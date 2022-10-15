@@ -60,7 +60,7 @@ public class DonorDetailsActivity extends AppCompatActivity {
         donorBlood.setText(blood);
         donorName.setText(fullName);
 
-
+        //Firebase database code
         fetchFirebaseQueryDatabase();
 
     }
