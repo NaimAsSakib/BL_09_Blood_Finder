@@ -16,16 +16,19 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.util.Locale;
 
 
 public class FragFilterLocation extends Fragment {
     EditText etInputLocation;
+    TextInputLayout etInputLocationLayout;
     String passLocation;
     Button btnLocationSearch;
 
     private RadioGroup radioGroup;
-    private RadioButton radBtnDhaka, radBtnRaj, radBtnSiraj;
+    private RadioButton radBtnDhaka, radBtnRaj, radBtnSiraj, radBtnOther;
 
 
     public FragFilterLocation() {
@@ -40,13 +43,16 @@ public class FragFilterLocation extends Fragment {
         View view = inflater.inflate(R.layout.fragment_frag_filter_location, container, false);
 
         etInputLocation = view.findViewById(R.id.locationName);
+        etInputLocationLayout=view.findViewById(R.id.textInputLayoutFragLocation);
         btnLocationSearch = view.findViewById(R.id.btnFragLocation);
 
         radioGroup = view.findViewById(R.id.radGroup);
         radBtnDhaka = view.findViewById(R.id.radBtnDhaka);
         radBtnRaj = view.findViewById(R.id.radBtnRaj);
         radBtnSiraj = view.findViewById(R.id.radBtnSiraj);
+        radBtnOther = view.findViewById(R.id.radBtnOther);
 
+        etInputLocationLayout.setVisibility(View.INVISIBLE); //making editTextLayout invisible
 
         //checking radiobutton id & setting that value on edittext
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -63,6 +69,11 @@ public class FragFilterLocation extends Fragment {
                         break;
                     case R.id.radBtnSiraj:
                         etInputLocation.setText(radBtnSiraj.getText());
+                        break;
+                    case R.id.radBtnOther:
+                        //when user click on other option editTextLayout will be visible then
+                        etInputLocationLayout.setVisibility(View.VISIBLE);
+                        etInputLocation.getText().clear();  //clearing previous data
                         break;
                 }
             }
