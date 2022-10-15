@@ -115,6 +115,16 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <View
+                    android:id="@+id/viewFilterAct"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="3dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardView3"/>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
