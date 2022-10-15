@@ -12,15 +12,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.Query;
 
 public class FilterActivity extends AppCompatActivity {
 
-    CardView cardViewName, cardViewBlood, cardViewLocation, cardViewBottom;
-
-    TextView tvSelectedText, tvToGoBack;
+    CardView cardViewName, cardViewBlood, cardViewLocation;
+ImageView backButton;
+    TextView tvSelectedText;
     Button searchButton;
 
 
@@ -35,8 +36,9 @@ public class FilterActivity extends AppCompatActivity {
         cardViewBlood = findViewById(R.id.cardView2);
         cardViewLocation = findViewById(R.id.cardView3);
 
+        backButton=findViewById(R.id.ivBackFilterAct);
+
         tvSelectedText=findViewById(R.id.tvBloodGroupNameFilter);
-        tvToGoBack=findViewById(R.id.tvToGoBack);
 
         searchButton=findViewById(R.id.btnFilterApply);
 
@@ -101,7 +103,7 @@ public class FilterActivity extends AppCompatActivity {
             }
 
             //going to back activity functionality
-            tvToGoBack.setOnClickListener(new View.OnClickListener() {
+            backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(FilterActivity.this,FirstActivity.class);
