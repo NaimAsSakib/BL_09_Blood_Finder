@@ -21,8 +21,9 @@ public class DonorDetailsActivity extends AppCompatActivity {
 
     TextView donorName, donorBlood, donorNumber, donorEmail, donorOccupation, donorLocation, donorOrganization;
     ImageView ivBack, call;
-    private String number;
+    private String fullName, blood;
 
+    ModelClassDonorDetails modelClassDonorDetails;
     DatabaseReference databaseReference;  //Firebase
 
 
@@ -51,12 +52,54 @@ public class DonorDetailsActivity extends AppCompatActivity {
             }
         });
 
+        //getting passed value from ContactListRCVAdapter
         Intent intent = getIntent();
-        String fullName=intent.getStringExtra("Name");
-        String blood= intent.getStringExtra("Blood");
+         fullName=intent.getStringExtra("Name");
+         blood= intent.getStringExtra("Blood");
+
         donorBlood.setText(blood);
         donorName.setText(fullName);
 
+
+        fetchFirebaseQueryDatabase();
+
+    }
+    private void fetchFirebaseQueryDatabase(){
+        databaseReference = FirebaseDatabase.getInstance().getReference("students");
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    ModelClassDonorDetails donorDetails = dataSnapshot.getValue(ModelClassDonorDetails.class);
+
+                    if(donorDetails.name.equals(fullName) && donorDetails.bloodGroup.equals(blood)){
+                        if (!donorDetails.mobile.isEmpty()){
+                            donorNumber.setText(donorDetails.mobile);
+                        }else {
+                            donorNumber.setText("Not Available");
+                        }
+
+                        donorLocation.setText(donorDetails.currentLocation);
+                        donorEmail.setText(donorDetails.email);
+                        donorOccupation.setText(donorDetails.occupation);
+                        donorOrganization.setText(donorDetails.organizationName);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        //databaseReference.addListenerForSingleValueEvent(valueEventListener);
+        Query query = FirebaseDatabase.getInstance().getReference("students")
+                .orderByChild("name")
+                .equalTo(fullName);
+        query.addListenerForSingleValueEvent(valueEventListener);
 
 
     }

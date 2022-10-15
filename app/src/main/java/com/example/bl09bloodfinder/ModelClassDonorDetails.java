@@ -3,6 +3,9 @@ package com.example.bl09bloodfinder;
 public class ModelClassDonorDetails {
     String name, bloodGroup, mobile, email, currentLocation, occupation, organizationName;
 
+    public ModelClassDonorDetails() {
+    }
+
     public ModelClassDonorDetails(String name, String bloodGroup, String mobile, String email, String currentLocation, String occupation, String organizationName) {
         this.name = name;
         this.bloodGroup = bloodGroup;
