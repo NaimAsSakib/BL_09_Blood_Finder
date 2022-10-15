@@ -28,7 +28,6 @@ public class ContactListRCViewAdapter extends RecyclerView.Adapter<ContactListRC
         this.modelClassContactLists = modelClassContactLists;
     }
 
-    ItemOnClickListener listener;
 
 
     public class Viewholder extends RecyclerView.ViewHolder {

@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 
 public class FragFilterName extends Fragment {
 
@@ -40,7 +42,7 @@ public class FragFilterName extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name=nameInput.getText().toString().trim();
+                name=nameInput.getText().toString().trim().toUpperCase(Locale.ROOT);
 
                 if (name.isEmpty()){
                     Toast.makeText(getActivity(),"Please enter a name",Toast.LENGTH_LONG).show();

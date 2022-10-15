@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,9 +27,10 @@ public class AfterFilterActivity extends AppCompatActivity {
 
     DatabaseReference databaseReference;  //Firebase
 
-    private ArrayList<ModelClassContactList> modelClassContactListArrayList;
+    private ArrayList<ModelClassAfterFilterAct> modelClassAfterFilterActArrayList;
 
     String selectedValueFilter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +42,24 @@ public class AfterFilterActivity extends AppCompatActivity {
         Intent intent = getIntent();
         selectedValueFilter = intent.getStringExtra("filterValue");
 
-        modelClassContactListArrayList = new ArrayList<>();
+
+        modelClassAfterFilterActArrayList = new ArrayList<>();
 
         recyclerView = findViewById(R.id.rcvAfterFilterAct);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(layoutManager);
-        programAdapter = new ContactListRCViewAdapter(this, modelClassContactListArrayList);
+        programAdapter = new AfterFilterRCVAdapter(this, modelClassAfterFilterActArrayList);
         recyclerView.setAdapter(programAdapter);
 
-        modelClassContactListArrayList.clear();  //clearing data after every selection of blood group by user
+        //firebase code
+        modelClassAfterFilterActArrayList.clear();  //clearing data after every selection of blood group by user
         firebaseDataQuery();
 
     }
 
     private void firebaseDataQuery() {
-
 
 
         //firebase code. path is the name of database
@@ -65,36 +68,46 @@ public class AfterFilterActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ModelClassContactList contactList = dataSnapshot.getValue(ModelClassContactList.class);
-                    modelClassContactListArrayList.add(contactList);
+                    ModelClassAfterFilterAct contactList = dataSnapshot.getValue(ModelClassAfterFilterAct.class);
+                    if (contactList.name.contains(selectedValueFilter)) {
+                        modelClassAfterFilterActArrayList.add(contactList);
+                    } else if (contactList.bloodGroup.equals(selectedValueFilter)) {
+                        modelClassAfterFilterActArrayList.add(contactList);
+                    } else if (contactList.currentLocation.contains(selectedValueFilter)) {
+                        modelClassAfterFilterActArrayList.add(contactList);
+                    }
+                    //  modelClassContactListArrayList.add(contactList);
+                    programAdapter.notifyDataSetChanged();
+
+
                 }
-                programAdapter.notifyDataSetChanged();
+                // programAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         };
+        databaseReference.addListenerForSingleValueEvent(valueEventListener);
+
         //Code for querying by blood group
         // For dynamically querying students name with selected blood group by user
-        Query query1 = FirebaseDatabase.getInstance().getReference("students")
+       /* Query query1 = FirebaseDatabase.getInstance().getReference("students")
                 .orderByChild("bloodGroup")
                 .equalTo(selectedValueFilter);
         query1.addListenerForSingleValueEvent(valueEventListener);
-
-        Query query3 = FirebaseDatabase.getInstance().getReference("students")
-                .orderByChild("currentLocation")
-                .equalTo(selectedValueFilter);
-        query3.addListenerForSingleValueEvent(valueEventListener);
 
         Query query2 = FirebaseDatabase.getInstance().getReference("students")
                 .orderByChild("name")
                 .equalTo(selectedValueFilter);
         query2.addListenerForSingleValueEvent(valueEventListener);
 
+
+        Query query4 = FirebaseDatabase.getInstance().getReference("students")
+                .orderByChild("currentLocation")
+                .equalTo(selectedValueFilter);
+        query4.addListenerForSingleValueEvent(valueEventListener);*/
 
 
     }
