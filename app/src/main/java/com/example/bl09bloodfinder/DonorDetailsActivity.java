@@ -77,12 +77,12 @@ public class DonorDetailsActivity extends AppCompatActivity {
                     //condition for getting details of donor only whose name & blood both equal to firebase database
                     if(donorDetails.name.equals(fullName) && donorDetails.bloodGroup.equals(blood)){
 
-                        if (!donorDetails.mobile.isEmpty()){
+                        /*if (!donorDetails.mobile.isEmpty()){
                             donorNumber.setText(donorDetails.mobile);
                         }else {
                             donorNumber.setText("Not Available");
-                        }
-
+                        }*/
+                        donorNumber.setText(donorDetails.mobile);
                         donorLocation.setText(donorDetails.currentLocation);
                         donorEmail.setText(donorDetails.email);
                         donorOccupation.setText(donorDetails.occupation);
@@ -98,8 +98,6 @@ public class DonorDetailsActivity extends AppCompatActivity {
             }
         };
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
-
-
 
     }
 }

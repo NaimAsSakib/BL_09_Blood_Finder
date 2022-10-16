@@ -6,7 +6,7 @@ public class ModelClassDonorDetails {
     public ModelClassDonorDetails() {
     }
 
-    public ModelClassDonorDetails(String name, String bloodGroup, String mobile, String email, String currentLocation, String occupation, String organizationName) {
+    /*public ModelClassDonorDetails(String name, String bloodGroup, String mobile, String email, String currentLocation, String occupation, String organizationName) {
         this.name = name;
         this.bloodGroup = bloodGroup;
         this.mobile = mobile;
@@ -14,7 +14,7 @@ public class ModelClassDonorDetails {
         this.currentLocation = currentLocation;
         this.occupation = occupation;
         this.organizationName = organizationName;
-    }
+    }*/
 
     public String getName() {
         return name;
