@@ -49,7 +49,7 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
         setContentView(R.layout.activity_first);
 
         imageFilter = findViewById(R.id.ivDonorContactList1);
-        tvFilter = findViewById(R.id.tvDonorContactList1);
+        tvFilter = findViewById(R.id.tvDonorContactList2);
 
 
         recyclerViewBloodGroup = findViewById(R.id.horizontalRecyclerView);
@@ -106,6 +106,14 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
 
 
         imageFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstActivity.this, FilterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FirstActivity.this, FilterActivity.class);
@@ -177,5 +185,12 @@ public class FirstActivity extends AppCompatActivity implements ItemOnClickListe
 
         firebaseDataQuery(); //calling firebase database query method to dynamically change data with clicked blood group
 
+    }
+    @Override
+    public void onBackPressed() {
+        //Code to exit app from home screen instantly
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 }

@@ -116,4 +116,11 @@ public class FilterActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, fragment).addToBackStack(null).commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(FilterActivity.this, FirstActivity.class);
+        startActivity(intent);
+    }
+
 }
