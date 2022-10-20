@@ -8,11 +8,15 @@ public class ModelClassContactList {
     ModelClassContactList(){
     }
 
-   /* public ModelClassContactList(String bloodGroup, String name, String mobile) {
-        this.bloodGroup = bloodGroup;
+    public ModelClassContactList(String name, String bloodGroup, String mobile, String email, String currentLocation, String occupation, String organizationName) {
         this.name = name;
+        this.bloodGroup = bloodGroup;
         this.mobile = mobile;
-    }*/
+        this.email = email;
+        this.currentLocation = currentLocation;
+        this.occupation = occupation;
+        this.organizationName = organizationName;
+    }
 
     public String getName() {
         return name;

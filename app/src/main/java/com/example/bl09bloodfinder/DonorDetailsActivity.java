@@ -90,7 +90,7 @@ public class DonorDetailsActivity extends AppCompatActivity {
         //fetchFirebaseQueryDatabase();
 
     }
-/*    private void fetchFirebaseQueryDatabase(){
+   /* private void fetchFirebaseQueryDatabase(){
         databaseReference = FirebaseDatabase.getInstance().getReference("students");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -98,16 +98,16 @@ public class DonorDetailsActivity extends AppCompatActivity {
 
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ModelClassDonorDetails donorDetails = dataSnapshot.getValue(ModelClassDonorDetails.class);
+                    ModelClassContactList donorDetails = dataSnapshot.getValue(ModelClassContactList.class);
 
                     //condition for getting details of donor only whose name & blood both equal to firebase database
                     if(donorDetails.name.equals(fullName) && donorDetails.bloodGroup.equals(blood)){
 
-                        *//*if (!donorDetails.mobile.isEmpty()){
+                        if (!donorDetails.mobile.isEmpty()){
                             donorNumber.setText(donorDetails.mobile);
                         }else {
                             donorNumber.setText("Not Available");
-                        }*//*
+                        }
                         donorNumber.setText(donorDetails.mobile);
                         donorLocation.setText(donorDetails.currentLocation);
                         donorEmail.setText(donorDetails.email);
