@@ -73,24 +73,36 @@ public class ContactListRCViewAdapter extends RecyclerView.Adapter<ContactListRC
             @Override
             public void onClick(View v) {
 
-                String donorBlood=item.getBloodGroup();
-                String donorName=item.getName();
+                String donorBlood=item.bloodGroup;
+                String donorName= item.name;
+                String donorNumber=item.mobile;
+                String donorEmail=item.email;
+                String donorLocation=item.currentLocation;
+                String donorOccupation= item.occupation;
+                String donorOrganization=item.organizationName;
 
 
 
                 Intent intent=new Intent(context,DonorDetailsActivity.class);
                 intent.putExtra("Blood",donorBlood);
                 intent.putExtra("Name",donorName);
+                intent.putExtra("Number",donorNumber);
+                intent.putExtra("Email",donorEmail);
+                intent.putExtra("Location",donorLocation);
+                intent.putExtra("Occupation",donorOccupation);
+                intent.putExtra("Organization",donorOrganization);
                 context.startActivity(intent);
             }
         });
 
         // For calling functionality
+        String donorNumber=item.mobile;
+
         holder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1=new Intent(context, DonorDetailsActivity.class);
-                context.startActivity(intent1);
+                Intent intentCall = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + donorNumber));
+                context.startActivity(intentCall);
             }
         });
 

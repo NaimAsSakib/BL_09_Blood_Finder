@@ -2,14 +2,23 @@ package com.example.bl09bloodfinder;
 
 
 public class ModelClassContactList {
-    String bloodGroup, name;
+    String name, bloodGroup, mobile, email, currentLocation, occupation, organizationName;
 
     //empty constructor without argument is for firebase
     ModelClassContactList(){
     }
 
-    public ModelClassContactList(String bloodGroup, String name) {
+   /* public ModelClassContactList(String bloodGroup, String name, String mobile) {
         this.bloodGroup = bloodGroup;
+        this.name = name;
+        this.mobile = mobile;
+    }*/
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -21,11 +30,43 @@ public class ModelClassContactList {
         this.bloodGroup = bloodGroup;
     }
 
-    public String getName() {
-        return name;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 }

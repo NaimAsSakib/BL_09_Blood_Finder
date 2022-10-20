@@ -21,7 +21,7 @@ public class DonorDetailsActivity extends AppCompatActivity {
 
     TextView donorName, donorBlood, donorNumber, donorEmail, donorOccupation, donorLocation, donorOrganization;
     ImageView ivBack, call;
-    private String fullName, blood;
+    private String fullName, blood, mobile, email, location, occupation,  organization;
 
     DatabaseReference databaseReference;  //Firebase
 
@@ -56,15 +56,41 @@ public class DonorDetailsActivity extends AppCompatActivity {
         //fullName & blood both are getting values from ContactListRCViewAdapter & AfterFilterRCVAdapter as their getStringExtra(value are same)
          fullName=intent.getStringExtra("Name");
          blood= intent.getStringExtra("Blood");
+         mobile= intent.getStringExtra("Number");
+         email= intent.getStringExtra("Email");
+         location= intent.getStringExtra("Location");
+         occupation= intent.getStringExtra("Occupation");
+         organization= intent.getStringExtra("Organization");
+
 
         donorBlood.setText(blood);
         donorName.setText(fullName);
 
+        if(mobile!=null){
+            donorNumber.setText(mobile);
+        }
+        if(email!=null){
+            donorEmail.setText(email);
+        }
+        if(location!=null){
+            donorLocation.setText(location);
+        }
+        if(occupation!=null){
+            donorOccupation.setText(occupation);
+        }
+        if(organization!=null){
+            donorOrganization.setText(organization);
+        }
+
+
+
+
         //Firebase database code
-        fetchFirebaseQueryDatabase();
+        //instead of 68-83, we can call firebase database as well, but that will take time to load, so use upper system to set text
+        //fetchFirebaseQueryDatabase();
 
     }
-    private void fetchFirebaseQueryDatabase(){
+/*    private void fetchFirebaseQueryDatabase(){
         databaseReference = FirebaseDatabase.getInstance().getReference("students");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -77,11 +103,11 @@ public class DonorDetailsActivity extends AppCompatActivity {
                     //condition for getting details of donor only whose name & blood both equal to firebase database
                     if(donorDetails.name.equals(fullName) && donorDetails.bloodGroup.equals(blood)){
 
-                        /*if (!donorDetails.mobile.isEmpty()){
+                        *//*if (!donorDetails.mobile.isEmpty()){
                             donorNumber.setText(donorDetails.mobile);
                         }else {
                             donorNumber.setText("Not Available");
-                        }*/
+                        }*//*
                         donorNumber.setText(donorDetails.mobile);
                         donorLocation.setText(donorDetails.currentLocation);
                         donorEmail.setText(donorDetails.email);
@@ -99,5 +125,5 @@ public class DonorDetailsActivity extends AppCompatActivity {
         };
         databaseReference.addListenerForSingleValueEvent(valueEventListener);
 
-    }
+    }*/
 }
