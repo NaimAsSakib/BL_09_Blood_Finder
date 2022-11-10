@@ -119,8 +119,8 @@ public class FilterActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(FilterActivity.this, FirstActivity.class);
-        startActivity(intent);
+       /* Intent intent = new Intent(FilterActivity.this, FirstActivity.class);
+        startActivity(intent);*/
     }
 
 }

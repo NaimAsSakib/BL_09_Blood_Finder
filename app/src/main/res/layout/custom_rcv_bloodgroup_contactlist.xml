@@ -54,15 +54,6 @@
                 android:textSize="13sp"
                 android:textStyle="normal" />
 
-            <TextView
-                android:id="@+id/tvContactListDesignation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Engineering"
-                android:textColor="#94989e"
-                android:textSize="11sp"
-                android:textStyle="normal" />
-
         </LinearLayout>
 
     </LinearLayout>
